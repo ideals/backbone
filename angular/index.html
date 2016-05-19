@@ -4,8 +4,8 @@
 	  <meta charset="utf-8">
     <title> AngularJS — Тестирование JS-фреймворков</title>
     <link rel="stylesheet" href="/_assets/bootstrap/css/bootstrap.min.css">
- 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="angular.min.js"></script>
+    <script src="angular-ui-router.min.js"></script>
     <script src="app.js"></script>
   </head>
   <body>
@@ -17,8 +17,8 @@
 
           <div class="collapse navbar-collapse" id="main-menu">
             <ul class="nav navbar-nav">
-              <li ng-repeat="itemMenu in mm.listMenu"  ng-class="{active : mm.isActiv(itemMenu.url)}">
-                <a href ng-click="mm.openUrl(itemMenu.url)"> {{itemMenu.name}} </a>  
+              <li ng-repeat="itemMenu in mm.listMenu" ui-sref-active="active">
+                <a ui-sref="mainState({url:itemMenu.url})">{{itemMenu.name}} </a>
               </li>
             </ul>
 
@@ -26,23 +26,8 @@
         </div>
       </nav>
 
-      <div class="container">
-      
-        <div class="row" ng-show="mm.showContent">
-          <div class="well" id="content">
+    <div ui-view></div>
 
-            <h1> {{mm.fullContent.header}} </h1>
-            <div id="text" ng-bind-html="mm.sce.trustAsHtml(mm.fullContent.content)"></div>
-
-          </div> 
-        </div>
-
-        <div class="well" ng-hide="mm.showContent">
-          <div class="text-center"><img src="../loader.gif" /></div>
-        </div>
-
-      </div>
-  	</div>
 
   </body>
 </html>
